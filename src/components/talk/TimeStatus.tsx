@@ -1,15 +1,23 @@
 import { useEffect, useState } from "react";
 
 const TimeStatus = () => {
-    const [time, setTime] = useState<string>("00:00:00 p.m.");
+    const [time, setTime] = useState<string>("00:00:00");
     const [awake, setAwake] = useState<boolean>(true);
 
     function updateTime() {
-        let current = new Date().toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" });
-        setTime(`${current.slice(-11, -6)}${current.slice(-3, -1)}.Ö.M.`); // Updated for Turkish time format
-        setTimeout(updateTime, 60 * 1000);
+        const current = new Date();
+        const hours = current.getHours();
+        const minutes = current.getMinutes();
+        const seconds = current.getSeconds();
+        
+        // 12 saatlik format için, AM/PM hesaplama
+        const isAM = hours < 12;
+        const formattedTime = `${String(hours % 12 || 12).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")} ${isAM ? "A.M." : "P.M."}`;
 
-        if (new Date().getHours() < 7) setAwake(false);
+        setTime(formattedTime);
+
+        if (hours < 7) setAwake(false); // 07:00'dan önce uyandığımı varsayıyoruz
+        setTimeout(updateTime, 60 * 1000); // Her dakika güncelle
     }
 
     useEffect(() => {
