@@ -18,6 +18,8 @@ import {
     SiPython,
     SiPrisma,
     SiMongodb,
+    SiHtml5,
+    SiCss3,
 } from "react-icons/si";
 import { TechItem } from "../components/TechItem";
 import RepoItem from "../components/RepoItem";
