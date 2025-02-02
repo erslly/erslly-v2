@@ -20,6 +20,9 @@ import {
     SiMongodb,
     SiHtml5,
     SiCss3,
+    SiVercel,
+    SiReactos,
+    SiGithub,
 } from "react-icons/si";
 import { TechItem } from "../components/TechItem";
 import RepoItem from "../components/RepoItem";
@@ -57,7 +60,9 @@ const Index = ({ stats, topRepos }: AppProps) => {
             <div className="w-full flex flex-wrap flex-row justify-center p-1 border border-slate-800 rounded-md bg-white/10 dark:bg-black/10 mb-12">
                 <TechItem icon={SiTypescript} name="TypeScript" />
                 <TechItem icon={SiVisualstudiocode} name="VSCode" />
+                <TechItem icon={SiVercel} name="Vercel" />
                 <TechItem icon={SiHtml5} name="HTML" />
+                <TechItem icon={SiGithub} name="GitHub" />
                 <TechItem icon={SiCss3} name="CSS" />
                 <TechItem icon={SiReact} name="React.js" />
                 <TechItem icon={SiNodeJs} name="Node.js" />
