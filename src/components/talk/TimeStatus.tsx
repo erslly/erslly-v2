@@ -12,7 +12,7 @@ const TimeStatus = () => {
         
         // 12 saatlik format için, AM/PM hesaplama
         const isAM = hours < 12;
-        const formattedTime = `${String(hours % 12 || 12).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")} ${isAM ? "A.M." : "P.M."}`;
+        const formattedTime = `${String(hours % 12 || 12).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")} ${isAM ? "AM" : "PM"}`;
 
         setTime(formattedTime);
 
