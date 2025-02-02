@@ -55,6 +55,8 @@ const Index = ({ stats, topRepos }: AppProps) => {
             <div className="w-full flex flex-wrap flex-row justify-center p-1 border border-slate-800 rounded-md bg-white/10 dark:bg-black/10 mb-12">
                 <TechItem icon={SiTypescript} name="TypeScript" />
                 <TechItem icon={SiVisualstudiocode} name="VSCode" />
+                <TechItem icon={SiHtml5} name="HTML" />
+                <TechItem icon={SiCss3} name="CSS" />
                 <TechItem icon={SiReact} name="React.js" />
                 <TechItem icon={SiNodeJs} name="Node.js" />
                 <TechItem icon={SiJavascript} name="JavaScript" />
