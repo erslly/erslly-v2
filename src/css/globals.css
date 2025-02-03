@@ -74,3 +74,9 @@ html.dark ::-webkit-scrollbar-thumb {
 html.dark ::-webkit-scrollbar-thumb:hover {
     background: #888;
 }
+    #nprogress .bar {
+        background: #f1f1f1 !important; 
+    }
+    #nprogress .peg {
+        box-shadow: 0 0 10px #f1f1f1, 0 0 5px #f1f1f1;
+    }
