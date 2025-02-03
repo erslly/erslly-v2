@@ -1,7 +1,7 @@
 import React from "react";
 import MessageComponent from "../components/talk/MessageComponent";
 import ContactLink from "../components/talk/ContactLink";
-import { SiTwitter, SiDiscord, SiX } from "react-icons/si";
+import { SiTwitter, SiDiscord, SiX, SiInstagram } from "react-icons/si";
 import { FiMail } from "react-icons/fi";
 import { motion } from "framer-motion";
 import TimeStatus from "../components/talk/TimeStatus";
@@ -30,16 +30,26 @@ const Talk = () => {
                     <ContactLink
                         name="@erslly"
                         icon={<SiDiscord className="w-6 h-6 text-[#5865F2]" />}
-                        link="https://discord.com/users/815668704435896321"
+                        link="https://erslly.xyz/discord"
                         borderColor="hover:border-[#5865F2]/50"
                     />
 
                     <ContactLink
                         name="@ersllydev"
-                        icon={<SiX className="w-6 h-6 text-[#1DA1F2]" />}
-                        link="https://x.com/ersllydev/"
-                        borderColor="hover:border-[#1DA1F2]/50"
+                        icon={<SiX className="w-6 h-6 text-[#000000]" />}
+                        link="https://erslly.xyz/x"
+                        borderColor="hover:border-[#000000]/50"
                     />
+
+                    
+                    <ContactLink
+                    name="@erdemozbebek_"
+                    icon={<SiInstagram className="w-6 h-6 text-[#C13584]" />}
+                    link="https://erslly.xyz/instagram"
+                    borderColor="hover:border-[#C13584]/50"
+                />
+                
+
 
                     <ContactLink
                         name="dev@erslly.xyz"
