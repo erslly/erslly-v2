@@ -23,6 +23,11 @@ module.exports = {
         destination: 'https://discord.com/users/815668704435896321',
         permanent: true,
       },
+      {
+        source: '/mail',
+        destination: 'mailto:dev@erslly.xyz',
+        permanent: true,
+      },
     ]
   },
 }
