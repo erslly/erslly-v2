@@ -153,11 +153,11 @@ const Nav = () => {
 
                             <div className="flex flex-row items-center justify-center gap-6 py-4">
                                 <LinkButton
-                                    href={"https://github.com/erslly"}
+                                    href={"https://erslly.xyz/github"}
                                     icon={<SiGithub className="w-6 h-6 cursor-pointer" />}
                                 />
                                 <LinkButton
-                                    href={"https://x.com/ersllydev"}
+                                    href={"https://erslly.xyz/x"}
                                     icon={<SiX className="w-6 h-6 cursor-pointer" />}
                                 />
                                 <LinkButton
