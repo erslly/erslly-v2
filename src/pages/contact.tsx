@@ -1,33 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import MessageComponent from "../components/talk/MessageComponent";
 import ContactLink from "../components/talk/ContactLink";
-import { SiDiscord, SiX } from "react-icons/si";
+import { SiTwitter, SiDiscord, SiX } from "react-icons/si";
 import { FiMail } from "react-icons/fi";
 import { motion } from "framer-motion";
 import TimeStatus from "../components/talk/TimeStatus";
 
-const Loader = () => (
-    <div className="fixed inset-0 flex justify-center items-center bg-white dark:bg-gray-900 z-50">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-violet-500"></div>
-    </div>
-);
-
 const Talk = () => {
-    const [loading, setLoading] = useState(() => {
-        return localStorage.getItem("hasLoadedBefore") ? false : true;
-    });
-
-    useEffect(() => {
-        if (!localStorage.getItem("hasLoadedBefore")) {
-            setTimeout(() => {
-                setLoading(false);
-                localStorage.setItem("hasLoadedBefore", "true");
-            }, 400);
-        }
-    }, []);
-
-    if (loading) return <Loader />;
-
     return (
         <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
