@@ -58,10 +58,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             ],
         });
 
+        // Discord API hatası kontrolü
         if (response.data.err) {
             return res.status(500).json({ result: "DISCORD_API_ERROR" });
         }
 
+        // Başarılı yanıt
         return res.status(200).json({ result: "Success" });
     } catch (error) {
         console.error("Error sending to Discord webhook:", error);
