@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
             <Head>
                 <meta charSet="utf-8" />
                 <title>ersllydev</title>
-                <link rel="icon" href="/erslly.jpg" />
+                <link rel="icon" href="../public/ersllydev.jpg" />
                 <meta name="viewport" content="width=device-width,initial-scale=1" />
                 <meta name="theme-color" content="#000000" />
                 <meta
@@ -40,7 +40,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
                 />
                 <meta name="description" content="Erslly - Front-end developer" />
                 <meta name="author" content="Erslly" />
-                <link rel="icon" href="/erslly.jpg" />
+                <link rel="icon" href="/ersllydev.jpg" />
             </Head>
 
             <div className="text-black dark:text-white flex flex-row justify-center w-full h-full bg-gradient-to-bl from-white to-[#fff] dark:from-black dark:to-[#0d131f] min-h-screen">
