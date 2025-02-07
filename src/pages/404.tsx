@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
+import { ArrowRight } from "lucide-react";
 
 const NotFound = () => {
+    const router = useRouter();
+
     return (
         <motion.div
             key="talk"
@@ -8,12 +12,11 @@ const NotFound = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ ease: "easeOut", duration: 0.25 }}
-            className="mt-36 mb-80 w-full text-center"
+            className="mt-36 mb-96 w-full flex flex-col items-center text-center"
         >
             <h1 className="text-black dark:text-white font-bold text-3xl mb-3 mt-8">Hmm... Thinking... 🤔</h1>
             <p className="text-black dark:text-gray-200 mb-6">It appears that what you're looking for isn't here.</p>
 
-            {/* 404 Anime Background */}
             <div className="relative inline-block">
                 <h2
                     className="text-[120px] font-extrabold uppercase"
@@ -29,13 +32,25 @@ const NotFound = () => {
                 </h2>
             </div>
 
-            {/* Anime kız GIF'i */}
-            <img
-                src="https://media.tenor.com/p-tsA5hdz2cAAAAi/crying-cute-anime.gif" 
-                alt="Sad Anime Girl"
-                className="mx-auto mb-6"
-                style={{ width: "200px", height: "auto" }}
-            />
+            <div className="w-full flex justify-center mb-10">
+    <img
+        src="https://media.tenor.com/p-tsA5hdz2cAAAAi/crying-cute-anime.gif"
+        alt="cokdehsetguzelhelel"
+        className="w-[200px] h-auto ml-[-49px]"
+    />
+</div>
+
+
+
+            <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => router.push("/")}
+                className="flex items-center gap-2 px-5 py-2 text-sm font-semibold text-white bg-blue-600 dark:bg-blue-500 rounded-full shadow-md 
+                hover:bg-blue-700 dark:hover:bg-blue-600 transition-all mb-10"
+            >
+                Go Back <ArrowRight size={16} />
+            </motion.button>
         </motion.div>
     );
 };
