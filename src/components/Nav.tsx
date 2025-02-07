@@ -111,7 +111,9 @@ const Nav = () => {
             <motion.div className="xs:hidden z-[990] fixed w-full flex flex-row justify-between items-center px-4 py-3 bg-white/60 dark:bg-[#12181d]/60 border-b border-slate-800/50 backdrop-blur-lg">
                 <div className="flex flex-row items-center justify-between gap-4">
                     <ThemeToggle />
-                    <span className="text-xl font-bold text-gray-600 dark:text-gray-300 mx-2"></span>
+                    <span className="text-xl font-extrabold text-blue-600 dark:text-blue-400">
+                        ERSLLY
+                    </span>
                 </div>
 
                 <div className="flex flex-row items-center justify-center">
