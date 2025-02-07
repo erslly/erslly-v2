@@ -1,10 +1,7 @@
 import { motion } from "framer-motion";
-import { useRouter } from "next/router";
 import { ArrowRight } from "lucide-react";
 
 const NotFound = () => {
-    const router = useRouter();
-
     return (
         <motion.div
             key="talk"
@@ -33,19 +30,17 @@ const NotFound = () => {
             </div>
 
             <div className="w-full flex justify-center mb-10">
-    <img
-        src="https://media.tenor.com/p-tsA5hdz2cAAAAi/crying-cute-anime.gif"
-        alt="cokdehsetguzelhelel"
-        className="w-[200px] h-auto ml-[-49px]"
-    />
-</div>
-
-
+                <img
+                    src="https://media.tenor.com/p-tsA5hdz2cAAAAi/crying-cute-anime.gif"
+                    alt="cokdehsetguzelhelel"
+                    className="w-[200px] h-auto ml-[-49px]"
+                />
+            </div>
 
             <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => router.push("/")}
+                onClick={() => window.location.href = '/'}
                 className="flex items-center gap-2 px-5 py-2 text-sm font-semibold text-white bg-blue-600 dark:bg-blue-500 rounded-full shadow-md 
                 hover:bg-blue-700 dark:hover:bg-blue-600 transition-all mb-10"
             >
