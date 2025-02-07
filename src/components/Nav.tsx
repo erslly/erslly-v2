@@ -73,8 +73,12 @@ const Nav = () => {
     return (
         <>
             <motion.div className="hidden z-[999] fixed w-[90%] md:w-[50rem] xs:flex flex-row justify-between items-center px-4 py-2 mt-4 md:mt-6 rounded-md bg-white/60 dark:bg-[#12181d]/60 border border-slate-800/50 backdrop-blur-lg">
-                <div className="flex flex-row items-center justify-between gap-2">
+                <div className="flex flex-row items-center justify-between gap-4">
                     <ThemeToggle />
+                    <span className="text-xl font-extrabold text-blue-600 dark:text-blue-400">
+                        ERSLLY
+                    </span>
+
                     <LandingButton name="Home" link="/" selected={router.pathname === "/"} />
                     <LandingButton name="Contact" link="/contact" selected={router.pathname === "/contact"} />
                 </div>
@@ -105,8 +109,9 @@ const Nav = () => {
             </motion.div>
 
             <motion.div className="xs:hidden z-[990] fixed w-full flex flex-row justify-between items-center px-4 py-3 bg-white/60 dark:bg-[#12181d]/60 border-b border-slate-800/50 backdrop-blur-lg">
-                <div className="flex flex-row items-center justify-between gap-2">
+                <div className="flex flex-row items-center justify-between gap-4">
                     <ThemeToggle />
+                    <span className="text-xl font-bold text-gray-600 dark:text-gray-300 mx-2">|</span>
                 </div>
 
                 <div className="flex flex-row items-center justify-center">
