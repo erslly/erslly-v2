@@ -1,13 +1,44 @@
 // @ts-ignore
 import { useLanyard } from "use-lanyard";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const Spotify = () => {
     const { data: user } = useLanyard("815668704435896321");
+    const [elapsedTime, setElapsedTime] = useState(0);
+    const [currentTrackId, setCurrentTrackId] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (user?.spotify) {
+            const startTime = user.spotify.timestamps.start;
+            const totalDuration = user.spotify.timestamps.end - startTime;
+
+            if (currentTrackId !== user.spotify.track_id) {
+                // Şarkı değiştiğinde zamanlayıcıyı sıfırla
+                setElapsedTime(0);
+                setCurrentTrackId(user.spotify.track_id);
+            }
+
+            const updateElapsedTime = () => {
+                const newElapsedTime = Date.now() - startTime;
+                if (newElapsedTime >= totalDuration) {
+                    setElapsedTime(totalDuration); // Süre dolduğunda sabit kal
+                } else {
+                    setElapsedTime(newElapsedTime);
+                }
+            };
+
+            const timer = setInterval(updateElapsedTime, 1000);
+            return () => clearInterval(timer);
+        }
+    }, [user?.spotify, currentTrackId]);
 
     if (!user || !user.spotify) {
         return null;
     }
+
+    const totalDuration = user.spotify.timestamps.end - user.spotify.timestamps.start;
+    const progress = Math.min((elapsedTime / totalDuration) * 100, 100);
 
     return (
         <motion.div
@@ -41,6 +72,26 @@ const Spotify = () => {
                     </a>
                     <p className="w-full text-gray-600 dark:text-[#cad2e0] font-normal text-sm truncate">
                         {user.spotify.artist}
+                    </p>
+                    <div className="w-full bg-gray-300 dark:bg-gray-700 h-1.5 rounded-full mt-2 relative">
+                        <div
+                            className="bg-green-500 h-1.5 rounded-full transition-all duration-500 ease-in-out"
+                            style={{
+                                width: `${progress}%`,
+                                transition: "width 1s ease-in-out",
+                            }}
+                        />
+                        <div
+                            className="absolute top-0 left-0 h-1.5 w-1.5 bg-white dark:bg-gray-100 rounded-full shadow-md"
+                            style={{
+                                transform: `translateX(${progress}%)`,
+                                transition: "transform 1s ease-in-out",
+                            }}
+                        />
+                    </div>
+                    <p className="text-gray-600 dark:text-[#cad2e0] text-xs mt-1">
+                        {Math.floor(elapsedTime / 60000)}:{(Math.floor((elapsedTime / 1000) % 60)).toString().padStart(2, "0")} / 
+                        {Math.floor(totalDuration / 60000)}:{(Math.floor((totalDuration / 1000) % 60)).toString().padStart(2, "0")}
                     </p>
                 </div>
             </div>
