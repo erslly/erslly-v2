@@ -36,6 +36,13 @@ function MyApp({ Component, pageProps, router }: AppProps) {
                 <meta name="description" content="Erslly - Front-end developer" />
                 <meta name="author" content="Erslly" />
                 <link rel="icon" href="/ersllydev.jpg" />
+
+                {/* Twitter Card Meta Tags */}
+                <meta property="twitter:card" content="summary_large_image" />
+                <meta property="twitter:url" content="https://erslly.xyz" />
+                <meta property="twitter:title" content="Erslly - Front-end Developer" />
+                <meta property="twitter:description" content="I'm a front-end developer passionate about building interactive web applications." />
+                <meta property="twitter:image" content="" />
             </Head>
 
             <div className="text-black dark:text-white flex flex-row justify-center w-full h-full bg-gradient-to-bl from-white to-[#fff] dark:from-black dark:to-[#0d131f] min-h-screen">
