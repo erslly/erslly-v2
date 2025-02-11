@@ -9,9 +9,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
-import './../css/globals.css';
 import "react-tippy/dist/tippy.css";
-
 
 function MyApp({ Component, pageProps }: AppProps) {
     const router = useRouter();
@@ -36,7 +34,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     }, [router.events]);
 
     useEffect(() => {
-        new Audio("/pop.mp3").play().catch(() => null); 
+        new Audio("/pop.mp3").play().catch(() => null);
 
         const snowContainer = document.createElement("div");
         snowContainer.style.position = "fixed";
@@ -68,11 +66,11 @@ function MyApp({ Component, pageProps }: AppProps) {
             snowflake.className = "snowflake";
             snowflake.innerHTML = "❄";
             snowflake.style.left = `${Math.random() * 100}vw`;
-            snowflake.style.top = `-${Math.random() * 10}vh`; 
+            snowflake.style.top = `-${Math.random() * 10}vh`;
             snowflake.style.opacity = (Math.random() * 0.8 + 0.2).toString();
             snowflake.style.fontSize = `${Math.random() * 10 + 10}px`;
             snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`;
-            snowflake.style.animationDelay = `${Math.random() * 2}s`; 
+            snowflake.style.animationDelay = `${Math.random() * 2}s`;
 
             snowContainer.appendChild(snowflake);
         }
@@ -81,7 +79,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             document.body.removeChild(snowContainer);
             document.head.removeChild(style);
         };
-    }, [router.pathname]); 
+    }, [router.pathname]);
 
     return (
         <>
@@ -105,9 +103,10 @@ function MyApp({ Component, pageProps }: AppProps) {
             <div className="text-black dark:text-white flex flex-row justify-center w-full h-full dark min-h-screen">
                 <Nav />
                 <div className="w-[80%] md:w-[45rem]">
-                    <AnimatePresence mode="wait">
-                        <Component {...pageProps} key={router.pathname} />
-                    </AnimatePresence>
+                <AnimatePresence exitBeforeEnter>
+                    <Component {...pageProps} key={router.pathname} />
+                </AnimatePresence>
+
                     <Footer />
                 </div>
                 <Spotify />
