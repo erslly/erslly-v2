@@ -29,13 +29,6 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { TechItem } from "../components/TechItem";
 import RepoItem from "../components/RepoItem";
 
-// ⏳ Yükleme Animasyonu Bileşeni
-const Loader = () => (
-    <div className="fixed inset-0 flex justify-center items-center bg-white dark:bg-gray-900 z-50">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-violet-500"></div>
-    </div>
-);
-
 interface AppProps {
     stats: Record<string, number>;
     repos: Record<any, any>[];
@@ -43,17 +36,10 @@ interface AppProps {
 
 const Index = ({ stats, repos }: AppProps) => {
     const [showAll, setShowAll] = useState(false);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        setTimeout(() => setLoading(false), 400);
-    }, []);
 
     const topRepos = repos
         .sort((a, b) => (b.stargazers_count || 0) - (a.stargazers_count || 0))
         .slice(0, showAll ? repos.length : 4);
-
-    if (loading) return <Loader />; 
 
     return (
         <motion.div
@@ -98,8 +84,8 @@ const Index = ({ stats, repos }: AppProps) => {
                 <a href="https://github.com/erslly" rel="noreferrer" className="font-semibold text-violet-500 hover:underline">
                     GitHub
                 </a>
-                , so I can learn from others and share what I know. My projects have received{" "}
-                <span className="font-bold text-black dark:text-slate-200">{stats.stars}</span> stars and{" "}
+                , so I can learn from others and share what I know. My projects have received {" "}
+                <span className="font-bold text-black dark:text-slate-200">{stats.stars}</span> stars and {" "}
                 <span className="font-bold text-black dark:text-slate-200">{stats.forks}</span> forks on GitHub.
             </p>
 
