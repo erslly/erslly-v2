@@ -72,11 +72,37 @@ html.dark ::-webkit-scrollbar-thumb {
 }
 
 html.dark ::-webkit-scrollbar-thumb:hover {
-    background: #888;
+    background: #f1f1f1;
 }
-    #nprogress .bar {
-        background: #f1f1f1 !important; 
+
+#nprogress .bar {
+    background: #f1f1f1 !important; 
+    height: 3px;
+}
+#nprogress .peg {
+    box-shadow: 0 0 10px #f1f1f1, 0 0 5px #f1f1f1;
+}
+.dark {
+    background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
+}
+
+.snowflake {
+    position: absolute;
+    top: -30px; 
+    color: white;
+    opacity: 0.8;
+    font-size: 12px;
+    user-select: none;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
     }
-    #nprogress .peg {
-        box-shadow: 0 0 10px #f1f1f1, 0 0 5px #f1f1f1;
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
     }
+}
