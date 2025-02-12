@@ -51,7 +51,7 @@ const Nav = () => {
       <motion.div className="hidden z-[999] fixed w-[90%] md:w-[50rem] xs:flex flex-row justify-between items-center px-4 py-2 mt-4 md:mt-6 rounded-md bg-white/60 dark:bg-[#12181d]/60 border border-slate-800/50 backdrop-blur-lg">
         <div className="flex flex-row items-center justify-between gap-4">
           <ThemeToggle />
-          <span className="text-xl font-extrabold text-blue-600 dark:text-blue-400">
+          <span className="text-xl font-extrabold text-white-600 dark:text-white-400">
             ERSLLY
           </span>
 
@@ -59,13 +59,13 @@ const Nav = () => {
             name="Home"
             link="/"
             selected={router.pathname === "/"}
-            icon={<FaHome className="w-5 h-5" />} // Ev ikonu
+            icon={<FaHome className="w-5 h-5" />}
           />
           <LandingButton
             name="Contact"
             link="/contact"
             selected={router.pathname === "/contact"}
-            icon={<FaEnvelope className="w-5 h-5" />} // İletişim ikonu
+            icon={<FaEnvelope className="w-5 h-5" />} 
           />
         </div>
 
