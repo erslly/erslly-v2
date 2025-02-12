@@ -56,7 +56,8 @@ const MessageComponent = () => {
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.25, ease: "easeOut" }}
                     >
-                        <h1 className="font-bold text-sm dark:text-slate-500 mb-1">EMAIL</h1>
+                       <h1 className="font-bold text-sm dark:text-gray-400 mb-1">EMAIL</h1>
+
                         <input
                             placeholder="example@gmail.com"
                             type="text"
@@ -64,7 +65,8 @@ const MessageComponent = () => {
                             className="w-full p-2 mb-4 rounded-md bg-slate-300/50 dark:bg-slate-200/5 text-sm placeholder:text-gray-600 dark:placeholder:text-slate-200/20"
                         />
 
-                        <h1 className="font-bold text-sm dark:text-slate-500 mb-1">MESSAGE</h1>
+                        <h1 className="font-bold text-sm dark:text-gray-400 mb-1">MESSAGE</h1>
+
                         <textarea
                             placeholder="Hi Erslly, what's up?"
                             onChange={(e: any) => (message.current = e.target.value)}
