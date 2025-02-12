@@ -3,7 +3,6 @@ import { SiTwitter, SiGithub, SiLinkedin, SiX } from "react-icons/si";
 import { FiMail } from "react-icons/fi";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import ThemeToggle from "./ThemeToggle";
 import { classNames } from "../../util/classNames";
 import { useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
@@ -50,7 +49,6 @@ const Nav = () => {
     <>
       <motion.div className="hidden z-[999] fixed w-[90%] md:w-[50rem] xs:flex flex-row justify-between items-center px-4 py-2 mt-4 md:mt-6 rounded-md bg-white/60 dark:bg-[#12181d]/60 border border-slate-800/50 backdrop-blur-lg">
         <div className="flex flex-row items-center justify-between gap-4">
-          <ThemeToggle />
           <span className="text-xl font-extrabold text-white-600 dark:text-white-400">
             ERSLLY
           </span>
@@ -90,8 +88,7 @@ const Nav = () => {
 
       <motion.div className="xs:hidden z-[990] fixed w-full flex flex-row justify-between items-center px-4 py-3 bg-white/60 dark:bg-[#12181d]/60 border-b border-slate-800/50 backdrop-blur-lg">
         <div className="flex flex-row items-center justify-between gap-4">
-          <ThemeToggle />
-          <span className="text-xl font-extrabold text-blue-600 dark:text-blue-400">
+          <span className="text-xl font-extrabold text-white-600 dark:text-white-400">
             ERSLLY
           </span>
         </div>
@@ -136,24 +133,6 @@ const Nav = () => {
                   selected={router.pathname === "/contact"}
                   icon={<FaEnvelope className="w-5 h-5" />} 
                 />
-              </div>
-
-              <div className="flex flex-row items-center justify-center gap-6 py-4">
-                <Link href="https://erslly.xyz/github" passHref>
-                  <a className="w-6 h-6 cursor-pointer">
-                    <SiGithub className="w-6 h-6" />
-                  </a>
-                </Link>
-                <Link href="https://erslly.xyz/x" passHref>
-                  <a className="w-6 h-6 cursor-pointer">
-                    <SiX className="w-6 h-6" />
-                  </a>
-                </Link>
-                <Link href="mailto:dev@erslly.xyz" passHref>
-                  <a className="w-6 h-6 cursor-pointer">
-                    <FiMail className="w-6 h-6" />
-                  </a>
-                </Link>
               </div>
             </motion.div>
           </>
