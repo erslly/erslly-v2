@@ -5,22 +5,42 @@ import Head from "next/head";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import { AnimatePresence } from "framer-motion";
-import { Router } from "next/router";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 import "react-tippy/dist/tippy.css";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 
-Router.events.on("routeChangeStart", () => NProgress.start());
-Router.events.on("routeChangeComplete", () => NProgress.done());
-Router.events.on("routeChangeError", () => NProgress.done());
+function MyApp({ Component, pageProps }: AppProps) {
+    const router = useRouter();
 
-function MyApp({ Component, pageProps, router }: AppProps) {
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            void new Audio("/pop.mp3").play().catch(() => null);
+        }
+    }, [router.pathname]);
+
+    useEffect(() => {
+        const handleStart = () => NProgress.start();
+        const handleStop = () => NProgress.done();
+
+        router.events.on("routeChangeStart", handleStart);
+        router.events.on("routeChangeComplete", handleStop);
+        router.events.on("routeChangeError", handleStop);
+
+        return () => {
+            router.events.off("routeChangeStart", handleStart);
+            router.events.off("routeChangeComplete", handleStop);
+            router.events.off("routeChangeError", handleStop);
+        };
+    }, [router]);
+
     return (
         <>
             <Head>
                 <meta charSet="utf-8" />
-                <title>ersllydev</title>
+                <title>Erslly</title>
                 <meta name="viewport" content="width=device-width,initial-scale=1" />
                 <meta name="theme-color" content="#000000" />
                 <meta name="keywords" content="erslly, ersllydev, erslly.xyz, ersllyweb, web developer, github, typescript" />
@@ -35,7 +55,6 @@ function MyApp({ Component, pageProps, router }: AppProps) {
                 <AnimatePresence exitBeforeEnter>
                 <Component {...pageProps} key={router.pathname} />
             </AnimatePresence>
-
                     <Footer />
                 </div>
                 <Spotify />
