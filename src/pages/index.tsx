@@ -1,45 +1,85 @@
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import {
-    SiVisualstudiocode,
-    SiRust,
-    SiGit,
-    SiDocker,
-    SiNextdotjs as SiNextJs,
-    SiNodedotjs as SiNodeJs,
-    SiPostgresql,
-    SiReact,
-    SiRedis,
-    SiStyledcomponents as SiStyledComponents,
-    SiTailwindcss as SiTailwindCSS,
-    SiTypescript,
-    SiYarn,
-    SiSwift,
-    SiJavascript,
-    SiPython,
-    SiPrisma,
-    SiMongodb,
-    SiHtml5,
-    SiCss3,
-    SiVercel,
-    SiReactos,
-    SiGithub,
-} from "react-icons/si";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import { TechItem } from "../components/TechItem";
-import RepoItem from "../components/RepoItem";
+import { FaGithub, FaTwitter, FaLinkedin, FaDiscord, FaEnvelope, FaSpotify } from "react-icons/fa";
+import React, { useEffect, useState } from 'react';
 
-interface AppProps {
-    stats: Record<string, number>;
-    repos: Record<any, any>[];
+interface LanyardData {
+    data: {
+        discord_status: string;
+        spotify?: {
+            track_id: string;
+            song: string;
+            artist: string;
+            album_art_url: string;
+        };
+    };
 }
 
-const Index = ({ stats, repos }: AppProps) => {
-    const [showAll, setShowAll] = useState(false);
+const Index = () => {
+    const [status, setStatus] = useState<string>('bg-gray-500');
+    const [loading, setLoading] = useState<boolean>(true);
+    const [currentDate, setCurrentDate] = useState<string>('');
+    const [spotifyTrack, setSpotifyTrack] = useState<string>(''); 
+    const [spotifyArtist, setSpotifyArtist] = useState<string>(''); 
+    const [spotifyCover, setSpotifyCover] = useState<string>(''); 
+    const [spotifyTrackId, setSpotifyTrackId] = useState<string>(''); 
 
-    const topRepos = repos
-        .sort((a, b) => (b.stargazers_count || 0) - (a.stargazers_count || 0))
-        .slice(0, showAll ? repos.length : 4);
+    useEffect(() => {
+        const fetchUserStatus = async () => {
+            try {
+                const response = await fetch('https://api.lanyard.rest/v1/users/815668704435896321'); // USER_ID'yi gerçek ID ile değiştirin
+                const data: LanyardData = await response.json();
+
+                const userStatus = data.data.discord_status;
+
+                if (userStatus === 'online') {
+                    setStatus('bg-green-500');
+                } else if (userStatus === 'idle') {
+                    setStatus('bg-yellow-500');
+                } else if (userStatus === 'dnd') {
+                    setStatus('bg-red-500');
+                } else {
+                    setStatus('bg-gray-500');
+                }
+
+                // Spotify bilgilerini kontrol et
+                if (data.data.spotify) {
+                    setSpotifyTrack(data.data.spotify.song);
+                    setSpotifyArtist(data.data.spotify.artist);
+                    setSpotifyCover(data.data.spotify.album_art_url);
+                    setSpotifyTrackId(data.data.spotify.track_id);
+                } else {
+                    setSpotifyTrack('');
+                    setSpotifyArtist('');
+                    setSpotifyCover('');
+                    setSpotifyTrackId('');
+                }
+            } catch (error) {
+                console.error("Lanyard API hatası:", error);
+                setStatus('bg-gray-500');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        const updateDateTime = () => {
+            const now = new Date();
+            const options: Intl.DateTimeFormatOptions = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true,
+            };
+            setCurrentDate(now.toLocaleString('en-US', options));
+        };
+
+        setInterval(updateDateTime, 1000);
+
+        fetchUserStatus();
+    }, []);
 
     return (
         <motion.div
@@ -47,82 +87,89 @@ const Index = ({ stats, repos }: AppProps) => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ ease: "easeOut", duration: 0.15 }}
-            className="mt-24 w-full mb-32"
+            className="h-screen flex flex-col justify-start items-start text-white overflow-hidden px-8 py-60"
         >
-            <h1 className="mt-36 font-bold text-4xl md:text-5xl mb-4">Hey, I'm Erslly 👋</h1>
-            <p className="text-gray-800 dark:text-gray-300 leading-6 tracking-wide mb-12">
-                Hello, my name is Erdem. I am a 16-year-old young software developer, preparing a good future for myself by putting forward various projects...
-            </p>
+            <div className="flex flex-col items-start text-left">
+                <h1 className="font-bold text-6xl md:text-6xl mb-2">erslly!</h1>
+                <p className="text-gray-400 text-lg font-light mb-4">
+                    Hey! I'm <span className="font-semibold">erslly, </span>a
+                    <span className="font-semibold text-blue-500"> 16 year old developer </span> from
+                    <span className="font-semibold text-red-500"> Turkey</span>.
+                </p>
 
-            <h2 className="font-medium text-3xl mb-4">What I Do 💭</h2>
-            <p className="text-gray-800 dark:text-gray-300 leading-6 font-light tracking-wide mb-12">
-                I have a great passion for all areas of technology, from software design and development to understanding how many moving parts of the internet work together, user experience (UX) design, front-end technologies, and programming.
-            </p>
-
-            <h2 className="font-medium text-3xl mb-4">Technologies 💻</h2>
-            <div className="w-full flex flex-wrap flex-row justify-center p-1 border border-slate-800 rounded-md bg-white/10 dark:bg-black/10 mb-12">
-                <TechItem icon={SiTypescript} name="TypeScript" />
-                <TechItem icon={SiVisualstudiocode} name="VSCode" />
-                <TechItem icon={SiVercel} name="Vercel" />
-                <TechItem icon={SiHtml5} name="HTML" />
-                <TechItem icon={SiGithub} name="GitHub" />
-                <TechItem icon={SiCss3} name="CSS" />
-                <TechItem icon={SiReact} name="React.js" />
-                <TechItem icon={SiNodeJs} name="Node.js" />
-                <TechItem icon={SiJavascript} name="JavaScript" />
-                <TechItem icon={SiNextJs} name="Next.js" />
-                <TechItem icon={SiTailwindCSS} name="TailwindCSS" />
-                <TechItem icon={SiPostgresql} name="Postgres" />
-                <TechItem icon={SiMongodb} name="MongoDB" />
-                <TechItem icon={SiGit} name="Git" />
-                <TechItem icon={SiPython} name="Python" />
+                <div className="flex space-x-4 mt-2 text-2xl">
+                    <a href="https://erslly.xyz/github" target="_blank" rel="noopener noreferrer">
+                        <FaGithub className="hover:text-gray-400 cursor-pointer" />
+                    </a>
+                    <a href="https://erslly.xyz/discord" target="_blank" rel="noopener noreferrer">
+                        <FaDiscord className="hover:text-gray-400 cursor-pointer" />
+                    </a>
+                    <a href="https://open.spotify.com/user/31y5bespqsim2zsgq47lwnmgsw64" target="_blank" rel="noopener noreferrer">
+                        <FaSpotify className="hover:text-gray-400 cursor-pointer" />
+                    </a>
+                    <a href="mailto:dev@erslly.xyz">
+                        <FaEnvelope className="hover:text-gray-400 cursor-pointer" />
+                    </a>
+                </div>
             </div>
 
-            <h2 className="font-medium text-3xl mb-4">Projects 🛠️</h2>
-            <p className="text-gray-800 dark:text-gray-300 leading-6 font-light tracking-wide mb-6">
-                In my free time, I enjoy creating open source projects on {" "}
-                <a href="https://github.com/erslly" rel="noreferrer" className="font-semibold text-violet-500 hover:underline">
-                    GitHub
-                </a>
-                , so I can learn from others and share what I know. My projects have received {" "}
-                <span className="font-bold text-black dark:text-slate-200">{stats.stars}</span> stars and {" "}
-                <span className="font-bold text-black dark:text-slate-200">{stats.forks}</span> forks on GitHub.
-            </p>
+            <div className="mt-4 flex flex-col items-start space-y-2 text-gray-300 text-sm">
+                <span>{currentDate}</span>
+                <div className="w-full border-t border-gray-600 my-2"></div>
+            </div>
 
-            <div className="w-full grid grid-cols-1 md:grid-cols-2 grid-rows-2 md:grid-rows-1 mb-6 gap-2">
-                {topRepos.map((repo) => (
-                    <RepoItem
-                        key={repo.name}
-                        name={repo.name}
-                        description={repo.description}
-                        stars={repo.stargazers_count}
-                        forks={repo.forks_count}
-                        language={repo.language}
+            <div className="mt-4 relative flex items-center">
+                <div className="relative">
+                    <img
+                        src="https://p.erslly.xyz/ersllydev.jpg"
+                        alt="Avatar"
+                        className="w-24 h-24 rounded-full"
                     />
-                ))}
+                    {loading ? (
+                        <span className="absolute bottom-0 right-0 w-5 h-5 bg-gray-300 rounded-full border-2 border-gray-900"></span>
+                    ) : (
+                        <span className={`absolute bottom-0 right-0 w-5 h-5 ${status} rounded-full border-2 border-gray-900`}></span>
+                    )}
+                </div>
+                <div className="ml-4">
+                    <p className="text-2xl font-bold">Erdem</p>
+                    <p className="text-sm font-light">Erslly</p>
+                </div>
             </div>
 
-            <p
-                onClick={() => setShowAll(!showAll)}
-                className="flex items-center justify-center gap-2 text-violet-500 cursor-pointer hover:text-violet-600 transition-all"
-            >
-                {showAll ? "Show Less" : "Show More"} 
-                {showAll ? <FaChevronUp /> : <FaChevronDown />}
-            </p>
+            {spotifyTrack && spotifyCover ? (
+                <div className="mt-10 flex items-center space-x-6">
+                    <img src={spotifyCover} alt="Spotify Cover" className="w-24 h-30 rounded-lg" />
+                    <div className="flex flex-col">
+                        <a
+                            href={`https://open.spotify.com/track/${spotifyTrackId}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-white font-semibold text-lg hover:underline"
+                        >
+                            {spotifyTrack}
+                        </a>
+                        <a
+                            href={`https://open.spotify.com/search/${encodeURIComponent(spotifyArtist)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-gray-400 text-sm hover:underline"
+                        >
+                            {spotifyArtist}
+                        </a>
+                        <span className="text-gray-500 text-xs">🎵 Now Playing on Spotify</span>
+                    </div>
+                </div>
+            ) : (
+                <div className="mt-4 flex items-center space-x-4">
+                    <FaSpotify className="text-gray-400 text-2xl" />
+                    <div className="flex flex-col">
+                        <p className="text-sm font-light text-gray-400">Not Listening to Anything</p>
+                    </div>
+                </div>
+            )}
         </motion.div>
     );
 };
-
-export async function getStaticProps() {
-    const stats = await fetch(`https://api.github-star-counter.workers.dev/user/erslly`).then(res => res.json());
-    const repos = await fetch(`https://api.github.com/users/erslly/repos?type=owner&per_page=10`).then(res =>
-        res.json()
-    );
-
-    return {
-        props: { stats, repos },
-        revalidate: 3600,
-    };
-}
 
 export default Index;
