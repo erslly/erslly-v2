@@ -11,7 +11,7 @@ import "nprogress/nprogress.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
     const router = useRouter();
-    const [direction, setDirection] = useState(1); 
+    const [direction, setDirection] = useState(1); // 1 = sağdan sola, -1 = soldan sağa
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     useEffect(() => {
         const handleStart = (url: string) => {
-            setDirection(url > router.pathname ? 1 : -1); 
+            setDirection(url > router.pathname ? 1 : -1); // URL değişimine göre yön ayarla
             NProgress.start();
         };
         const handleStop = () => NProgress.done();
@@ -48,7 +48,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             transition: { duration: 0.4, ease: "easeInOut" },
         },
         exit: (direction: number) => ({
-            x: direction * -100, 
+            x: direction * -100, // Çıkış yönü ters
             opacity: 0,
             transition: { duration: 0.3, ease: "easeInOut" },
         }),
@@ -70,7 +70,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <div className="text-black dark:text-white flex flex-row justify-center w-full h-full dark min-h-screen">
                 <Nav />
                 <div className="w-[80%] md:w-[45rem]">
-                    <AnimatePresence mode="wait" custom={direction}>
+                    <AnimatePresence exitBeforeEnter custom={direction}>
                         <motion.div
                             key={router.pathname}
                             variants={pageVariants}
