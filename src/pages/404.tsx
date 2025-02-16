@@ -10,7 +10,7 @@ const NotFound = () => {
             transition={{ ease: "easeOut", duration: 0.25 }}
             className="mt-36 mb-96 w-full flex flex-col items-center text-center"
         >
-            <h1 className="text-black dark:text-white font-bold text-3xl mb-3 mt-8">Hmm... Thinking... 🤔</h1>
+            <h1 className="text-black dark:text-white font-bold text-3xl mb-3 mt-40">Hmm... Thinking... 🤔</h1>
             <p className="text-black dark:text-gray-200 mb-6">It appears that what you're looking for isn't here.</p>
 
             <div className="relative inline-block">
@@ -26,14 +26,6 @@ const NotFound = () => {
                 >
                     404
                 </h2>
-            </div>
-
-            <div className="w-full flex justify-center mb-10">
-                <img
-                    src="https://media.tenor.com/p-tsA5hdz2cAAAAi/crying-cute-anime.gif"
-                    alt="cokdehsetguzelhelel"
-                    className="w-[200px] h-auto ml-[-49px]"
-                />
             </div>
 
             <motion.button
