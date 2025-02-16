@@ -1,19 +1,17 @@
 import "../css/globals.css";
 import type { AppProps } from "next/app";
-import Spotify from "../components/Spotify";
 import Head from "next/head";
 import Nav from "../components/Nav";
-import Footer from "../components/Footer";
-import { AnimatePresence } from "framer-motion";
-import { useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-
 import "react-tippy/dist/tippy.css";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
     const router = useRouter();
+    const [direction, setDirection] = useState(1); 
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -22,7 +20,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     }, [router.pathname]);
 
     useEffect(() => {
-        const handleStart = () => NProgress.start();
+        const handleStart = (url: string) => {
+            setDirection(url > router.pathname ? 1 : -1); 
+            NProgress.start();
+        };
         const handleStop = () => NProgress.done();
 
         router.events.on("routeChangeStart", handleStart);
@@ -35,6 +36,23 @@ function MyApp({ Component, pageProps }: AppProps) {
             router.events.off("routeChangeError", handleStop);
         };
     }, [router]);
+
+    const pageVariants = {
+        initial: (direction: number) => ({
+            x: direction * 100, // Sayfa giriş yönü
+            opacity: 0,
+        }),
+        animate: {
+            x: 0,
+            opacity: 1,
+            transition: { duration: 0.4, ease: "easeInOut" },
+        },
+        exit: (direction: number) => ({
+            x: direction * -100, 
+            opacity: 0,
+            transition: { duration: 0.3, ease: "easeInOut" },
+        }),
+    };
 
     return (
         <>
@@ -52,12 +70,19 @@ function MyApp({ Component, pageProps }: AppProps) {
             <div className="text-black dark:text-white flex flex-row justify-center w-full h-full dark min-h-screen">
                 <Nav />
                 <div className="w-[80%] md:w-[45rem]">
-                <AnimatePresence exitBeforeEnter>
-                <Component {...pageProps} key={router.pathname} />
-            </AnimatePresence>
-                    <Footer />
+                    <AnimatePresence mode="wait" custom={direction}>
+                        <motion.div
+                            key={router.pathname}
+                            variants={pageVariants}
+                            initial="initial"
+                            animate="animate"
+                            exit="exit"
+                            custom={direction}
+                        >
+                            <Component {...pageProps} />
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
-                <Spotify />
             </div>
         </>
     );
