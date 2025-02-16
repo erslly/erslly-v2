@@ -9,7 +9,8 @@ body {
     padding: 0;
     margin: 0;
     font-family: Roboto, sans-serif;
-    background: #000;
+    background: #0d0d0d;
+    color: #fff;
     overscroll-behavior-y: none;
 }
 
@@ -26,62 +27,87 @@ a {
     display: none !important;
 }
 
+.dark {
+    background: linear-gradient(to bottom, #100d1a, #1a1a2e);
+    color: #e5e5e5;
+}
+
 .dark .enter {
-    background: rgb(29, 32, 44) !important;
+    background: #1e1e2d !important;
     color: #fff;
     border: none;
 }
 
 .enter {
     background: rgb(245, 245, 245) !important;
-    border: 1px solid rgb(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .dark .tippy-tooltip-content {
-    color: #fff;
+    color: #e5e5e5;
 }
 
 .tippy-tooltip-content {
     color: #000;
 }
+
 ::-webkit-scrollbar {
     width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: #222;
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #4a4a4a;
     border-radius: 10px;
     transition: background 0.3s ease-in-out;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: #7a7a7a;
 }
 
 html.dark ::-webkit-scrollbar-track {
-    background: #1a1a1a;
+    background: #0d0d0d;
 }
 
 html.dark ::-webkit-scrollbar-thumb {
-    background: #555;
+    background: #4a4a4a;
 }
 
 html.dark ::-webkit-scrollbar-thumb:hover {
-    background: #f1f1f1;
+    background: #888;
 }
 
 #nprogress .bar {
-    background: #f1f1f1 !important; 
+    background: #b700ff !important; 
     height: 3px;
 }
+
 #nprogress .peg {
-    box-shadow: 0 0 10px #f1f1f1, 0 0 5px #f1f1f1;
+    box-shadow: 0 0 10px #b700ff, 0 0 5px #b700ff;
 }
-.dark {
-    background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
+
+.page-enter {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.page-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.page-exit {
+    opacity: 1;
+}
+
+.page-exit-active {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
