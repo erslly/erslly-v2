@@ -11,7 +11,7 @@ import "nprogress/nprogress.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
     const router = useRouter();
-    const [direction, setDirection] = useState(1); // 1 = sağdan sola, -1 = soldan sağa
+    const [direction, setDirection] = useState(1); 
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     useEffect(() => {
         const handleStart = (url: string) => {
-            setDirection(url > router.pathname ? 1 : -1); // URL değişimine göre yön ayarla
+            setDirection(url > router.pathname ? 1 : -1); 
             NProgress.start();
         };
         const handleStop = () => NProgress.done();
@@ -39,18 +39,21 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     const pageVariants = {
         initial: (direction: number) => ({
-            x: direction * 100, // Sayfa giriş yönü
+            x: direction * 100, 
             opacity: 0,
+            scale: 0.95, 
         }),
         animate: {
             x: 0,
             opacity: 1,
-            transition: { duration: 0.4, ease: "easeInOut" },
+            scale: 1, 
+            transition: { duration: 0.5, ease: [0.6, 0.05, -0.01, 0.9] }, 
         },
         exit: (direction: number) => ({
-            x: direction * -100, // Çıkış yönü ters
+            x: direction * -100, 
             opacity: 0,
-            transition: { duration: 0.3, ease: "easeInOut" },
+            scale: 1.05, 
+            transition: { duration: 0.3, ease: [0.6, 0.05, -0.01, 0.9] },
         }),
     };
 
@@ -64,7 +67,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <meta name="keywords" content="erslly, ersllydev, erslly.xyz, ersllyweb, web developer, github, typescript" />
                 <meta name="description" content="Erslly - Front-end developer" />
                 <meta name="author" content="Erslly" />
-                <link rel="icon" href="/ersllydev.jpg" />
+                <link rel="icon" href="public/ersllydev.jpg" />
             </Head>
 
             <div className="text-black dark:text-white flex flex-row justify-center w-full h-full dark min-h-screen">
