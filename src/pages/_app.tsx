@@ -67,7 +67,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <meta name="keywords" content="erslly, ersllydev, erslly.xyz, ersllyweb, web developer, github, typescript" />
                 <meta name="description" content="Erslly - Front-end developer" />
                 <meta name="author" content="Erslly" />
-                <link rel="icon" href="public/ersllydev.jpg" />
+                <link rel="icon" href="ersllydev.jpg" />
             </Head>
 
             <div className="text-black dark:text-white flex flex-row justify-center w-full h-full dark min-h-screen">
