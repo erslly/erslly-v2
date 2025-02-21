@@ -74,7 +74,32 @@ export default function Skills() {
         name: 'Vercel',
         icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqwNwDUq_S0U6wDzS60c45kVK5zpxF-03wsQ&s',
         href: 'https://vercel.com/'
-    }
+    },
+    {
+      name: 'MongoDB',
+      icon: 'https://pbs.twimg.com/profile_images/1452637606559326217/GFz_P-5e_400x400.png',
+      href: 'https://mongodb.com/'
+    },
+    {
+      name: 'GitHub',
+      icon: 'https://cdn.pixabay.com/photo/2022/01/30/13/33/github-6980894_960_720.png',
+      href: 'https://github.com/'
+    },
+    {
+      name: 'Docker',
+      icon: 'https://p.erslly.xyz/docker.png',
+      href: 'https://www.docker.com/'
+    },
+    {
+      name: 'DiscordJs',
+      icon: 'https://discordjs.guide/meta-image.png',
+      href: 'https://discord.com/developers/docs/intro'
+    },
+    {
+      name: 'PostgreSQL',
+      icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGh954H7mJFi7jPSzOU6JBdNVUCA_ixPHK8Q&s',
+      href: 'https://www.postgresql.org/'
+  }
   ];
 
   return (
