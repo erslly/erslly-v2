@@ -11,17 +11,17 @@ import "nprogress/nprogress.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
     const router = useRouter();
-    const [direction, setDirection] = useState(1); 
+    const [direction, setDirection] = useState(1);
 
     useEffect(() => {
         if (typeof window !== "undefined") {
-            void new Audio("/pop.mp3").play().catch(() => null);
+            void new Audio("").play().catch(() => null);
         }
     }, [router.pathname]);
 
     useEffect(() => {
         const handleStart = (url: string) => {
-            setDirection(url > router.pathname ? 1 : -1); 
+            setDirection(url > router.pathname ? 1 : -1);
             NProgress.start();
         };
         const handleStop = () => NProgress.done();
@@ -39,22 +39,35 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     const pageVariants = {
         initial: (direction: number) => ({
-            x: direction * 100, 
+            x: direction * 100,
             opacity: 0,
-            scale: 0.95, 
         }),
         animate: {
             x: 0,
             opacity: 1,
-            scale: 1, 
-            transition: { duration: 0.5, ease: [0.6, 0.05, -0.01, 0.9] }, 
+            transition: { duration: 0.5, ease: [0.6, 0.05, -0.01, 0.9] },
         },
         exit: (direction: number) => ({
-            x: direction * -100, 
+            x: direction * -100,
             opacity: 0,
-            scale: 1.05, 
             transition: { duration: 0.3, ease: [0.6, 0.05, -0.01, 0.9] },
         }),
+    };
+
+    const itemVariants = {
+        initial: {
+            y: -20,
+            opacity: 0,
+        },
+        animate: {
+            y: 0,
+            opacity: 1,
+            transition: {
+                duration: 0.3, 
+                ease: "easeOut",
+                staggerChildren: 0.1, 
+            },
+        },
     };
 
     return (
@@ -67,7 +80,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <meta name="keywords" content="erslly, ersllydev, erslly.xyz, ersllyweb, web developer, github, typescript" />
                 <meta name="description" content="Erslly - Front-end developer" />
                 <meta name="author" content="Erslly" />
-                <link rel="icon" href="ersllydev.jpg" />
+                <link rel="icon" href="public/ersllydev.jpg" />
             </Head>
 
             <div className="text-black dark:text-white flex flex-row justify-center w-full h-full dark min-h-screen">
@@ -82,7 +95,13 @@ function MyApp({ Component, pageProps }: AppProps) {
                             exit="exit"
                             custom={direction}
                         >
-                            <Component {...pageProps} />
+                            <motion.div
+                                variants={itemVariants}
+                                initial="initial"
+                                animate="animate"
+                            >
+                                <Component {...pageProps} />
+                            </motion.div>
                         </motion.div>
                     </AnimatePresence>
                 </div>
