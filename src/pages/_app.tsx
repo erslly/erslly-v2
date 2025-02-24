@@ -109,7 +109,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
             <div className="absolute top-10 right-20 hidden md:block">
                 <a
-                    href="https://github.com/erslly/template"
+                    href="https://github.com/erslly/erslly-v2"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-purple-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-purple-500 transition-all duration-300 flex items-center space-x-1 group"
