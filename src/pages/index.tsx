@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FaGithub, FaTwitter, FaLinkedin, FaDiscord, FaEnvelope, FaSpotify } from "react-icons/fa";
+import { FaGithub, FaDiscord, FaEnvelope, FaSpotify } from "react-icons/fa";
 import React, { useEffect, useState } from 'react';
 
 interface LanyardData {
@@ -30,7 +30,6 @@ const Index = () => {
                 const data: LanyardData = await response.json();
 
                 const userStatus = data.data.discord_status;
-
                 if (userStatus === 'online') {
                     setStatus('border-green-500 bg-green-500');
                 } else if (userStatus === 'idle') {
@@ -38,7 +37,7 @@ const Index = () => {
                 } else if (userStatus === 'dnd') {
                     setStatus('border-red-500 bg-red-500');
                 } else {
-                    setStatus('border-gray-500 bg-gray-500'); // Çevrimdışı için gri
+                    setStatus('border-gray-500 bg-gray-500');
                 }
 
                 if (data.data.spotify) {
@@ -94,7 +93,7 @@ const Index = () => {
             transition={{ ease: "easeOut", duration: 0.15 }}
             className="h-screen flex flex-col justify-start items-start text-white overflow-hidden px-8 py-40 md:py-60"
         >
-    
+
             <div className="flex flex-col items-start text-left">
                 <h1 className="font-bold text-6xl md:text-6xl mb-2">erslly!</h1>
                 <p className="text-gray-400 text-lg font-light mb-4">
@@ -120,28 +119,14 @@ const Index = () => {
             </div>
 
             <div className="mt-4 flex flex-col items-start space-y-2 text-gray-300 text-sm">
-                {currentDate ? (
-                    <span>{currentDate}</span>
-                ) : (
-                    <div className="flex items-center justify-center">
-                        <div className="w-4 h-4 border-2 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
-                    </div>
-                )}
+                {currentDate ? <span>{currentDate}</span> : <div className="w-4 h-4 border-2 border-purple-500 border-t-transparent rounded-full animate-spin"></div>}
                 <div className="w-full border-t border-gray-600 my-2"></div>
             </div>
 
             <div className="mt-4 relative flex items-center">
                 <div className="relative">
-                    <img
-                        src="https://p.erslly.xyz/ersllydev.jpg"
-                        alt="Avatar"
-                        className={`w-24 h-24 rounded-full border-4 ${status.split(" ")[0]}`}
-                    />
-                    {loading ? (
-                        <span className="absolute bottom-0 right-0 w-5 h-5 bg-gray-300 rounded-full border-2 border-gray-900"></span>
-                    ) : (
-                        <span className={`absolute bottom-0 right-0 w-5 h-5 ${status.split(" ")[1]} rounded-full border-2 border-gray-900`}></span>
-                    )}
+                    <img src="https://p.erslly.xyz/ersllydev.png" alt="Avatar" className={`w-24 h-24 rounded-full border-4 ${status.split(" ")[0]}`} />
+                    <span className={`absolute bottom-0 right-0 w-5 h-5 ${status.split(" ")[1]} rounded-full border-2 border-gray-900`}></span>
                 </div>
                 <div className="ml-4">
                     <p className="text-2xl font-bold">Erdem</p>
@@ -153,20 +138,10 @@ const Index = () => {
                 <div className="mt-10 flex items-center space-x-6">
                     <img src={spotifyCover} alt="Spotify Cover" className="w-24 h-30 rounded-lg" />
                     <div className="flex flex-col">
-                        <a
-                            href={`https://open.spotify.com/track/${spotifyTrackId}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-white font-semibold text-lg hover:underline"
-                        >
+                        <a href={`https://open.spotify.com/track/${spotifyTrackId}`} target="_blank" rel="noopener noreferrer" className="text-white font-semibold text-lg hover:underline">
                             {spotifyTrack}
                         </a>
-                        <a
-                            href={`https://open.spotify.com/search/${encodeURIComponent(spotifyArtist)}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-gray-400 text-sm hover:underline"
-                        >
+                        <a href={`https://open.spotify.com/search/${encodeURIComponent(spotifyArtist)}`} target="_blank" rel="noopener noreferrer" className="text-gray-400 text-sm hover:underline">
                             {spotifyArtist}
                         </a>    
                         <span className="text-gray-500 text-xs">🎵 Now Playing on Spotify</span>
@@ -175,9 +150,7 @@ const Index = () => {
             ) : (
                 <div className="mt-4 flex items-center space-x-4">
                     <FaSpotify className="text-gray-400 text-2xl" />
-                    <div className="flex flex-col">
-                        <p className="text-sm font-light text-gray-400">Not Listening to Anything</p>
-                    </div>
+                    <p className="text-sm font-light text-gray-400">Not Listening to Anything</p>
                 </div>
             )}
         </motion.div>
