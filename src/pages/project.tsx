@@ -61,14 +61,14 @@ const RepoItem = ({ name, description, stars, forks, language }: RepoProps) => {
 export default function Repos() {
   const [repos, setRepos] = useState<Repository[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true); // New state for loading
+  const [isLoading, setIsLoading] = useState<boolean>(true); 
 
   useEffect(() => {
     fetch("https://api.github.com/users/erslly/repos")
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
-          setRepos(data.slice(0, 6)); // Only take the first 6 repos
+          setRepos(data.slice(0, 6)); 
         } else {
           setError("Failed to load repositories");
         }
@@ -77,7 +77,7 @@ export default function Repos() {
         setError(`Error fetching data: ${err.message}`);
       })
       .finally(() => {
-        setIsLoading(false); // Once the data is fetched, set loading to false
+        setIsLoading(false); 
       });
   }, []);
 
@@ -87,14 +87,12 @@ export default function Repos() {
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen p-6 pt-40">
-      {/* Skills and Repo header */}
       <div className="mb-8 w-full text-left">
         <h2 className="font-semibold text-3xl mb-2">Repositories 📦</h2>
         <p className="font-light text-sm text-gray-600 dark:text-gray-400">
         </p>
       </div>
 
-      {/* Loader */}
       {isLoading ? (
         <div className="flex justify-center items-center space-x-2 mb-8">
           <div className="w-8 h-8 border-4 border-t-4 border-gray-500 rounded-full animate-spin"></div>
@@ -118,7 +116,6 @@ export default function Repos() {
         </div>
       )}
 
-      {/* View My Repos Button */}
       <div className="mt-8 w-full flex justify-end">
         <a
           href="https://github.com/erslly"
