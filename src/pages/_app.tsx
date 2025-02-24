@@ -63,9 +63,9 @@ function MyApp({ Component, pageProps }: AppProps) {
             y: 0,
             opacity: 1,
             transition: {
-                duration: 0.3, 
+                duration: 0.3,
                 ease: "easeOut",
-                staggerChildren: 0.1, 
+                staggerChildren: 0.1,
             },
         },
     };
@@ -105,6 +105,18 @@ function MyApp({ Component, pageProps }: AppProps) {
                         </motion.div>
                     </AnimatePresence>
                 </div>
+            </div>
+
+            <div className="absolute top-10 right-20 hidden md:block">
+                <a
+                    href="https://github.com/erslly/template"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-purple-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-purple-500 transition-all duration-300 flex items-center space-x-1 group"
+                >
+                    <span className="font-semibold text-sm">Get this template for free</span>
+                    <span className="transform translate-x-0 group-hover:translate-x-1 transition-all duration-300 text-lg">➔</span>
+                </a>
             </div>
         </>
     );
