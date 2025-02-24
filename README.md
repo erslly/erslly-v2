@@ -11,6 +11,6 @@
    npm install
 
 3. Geliştirme sunucusunu başlatın
- ```bash
+   ```bash
    npm run dev
 
