@@ -14,7 +14,6 @@ const Spotify = () => {
             const totalDuration = user.spotify.timestamps.end - startTime;
 
             if (currentTrackId !== user.spotify.track_id) {
-                // Şarkı değiştiğinde zamanlayıcıyı sıfırla
                 setElapsedTime(0);
                 setCurrentTrackId(user.spotify.track_id);
             }
@@ -22,7 +21,7 @@ const Spotify = () => {
             const updateElapsedTime = () => {
                 const newElapsedTime = Date.now() - startTime;
                 if (newElapsedTime >= totalDuration) {
-                    setElapsedTime(totalDuration); // Süre dolduğunda sabit kal
+                    setElapsedTime(totalDuration); 
                 } else {
                     setElapsedTime(newElapsedTime);
                 }
